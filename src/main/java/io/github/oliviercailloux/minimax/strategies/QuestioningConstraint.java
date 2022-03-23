@@ -30,7 +30,7 @@ public class QuestioningConstraint {
     }
 
     public QuestionType getKind() {
-	return kin;// This should be: return kind;
+	return kind;// This should be: return kind;
     }
 
     public int getNumber() {
