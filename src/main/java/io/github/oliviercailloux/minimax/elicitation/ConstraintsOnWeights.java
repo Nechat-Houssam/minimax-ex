@@ -134,7 +134,7 @@ public class ConstraintsOnWeights {
      *                               guarantee coherence).
      */
     private ConstraintsOnWeights(MPBuilder mp, boolean convexityConstraintSet) {
-	builder = MP.builder(); // Replace by: builder = mp;
+	builder = mp; // Replace by: builder = mp;
 	solver = new OrToolsSolver();
 	lastSolution = null;
 	this.convexityConstraintSet = convexityConstraintSet;
