@@ -30,10 +30,10 @@ public class StrategyCss implements Strategy {
 	return new StrategyCss();
     }
 
-    private final StrategyHelper helper;
+    private final Helper helper;
 
     private StrategyCss() {
-	helper = StrategyHelper.newInstance();
+	helper = Helper.newInstance();
     }
 
     @Override

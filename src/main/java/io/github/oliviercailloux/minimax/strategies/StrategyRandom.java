@@ -33,7 +33,7 @@ public class StrategyRandom implements Strategy {
 	return new StrategyRandom(probabilityCommittee, true);
     }
 
-    private final StrategyHelper helper;
+    private final Helper helper;
 
     private final boolean onlyVoters;
 
@@ -44,7 +44,7 @@ public class StrategyRandom implements Strategy {
 	checkArgument(probabilityCommittee >= 0d);
 	checkArgument(probabilityCommittee <= 1d);
 	this.probabilityCommittee = probabilityCommittee;
-	helper = StrategyHelper.newInstance();
+	helper = Helper.newInstance();
 	this.onlyVoters = onlyVoters;
     }
 
@@ -89,7 +89,7 @@ public class StrategyRandom implements Strategy {
 		    .asTransitiveGraph();
 	    final ImmutableSetMultimap<Alternative, Alternative> incomparables = graph.nodes().stream()
 		    .collect(ImmutableSetMultimap.flatteningToImmutableSetMultimap(a -> a,
-			    a -> StrategyHelper.getIncomparables(graph, a)));
+			    a -> Helper.getIncomparables(graph, a)));
 	    final Alternative a = helper.sortAndDraw(incomparables.keySet().asList(), Comparator.naturalOrder());
 	    final Alternative b = helper.sortAndDraw(incomparables.get(a).asList(), Comparator.naturalOrder());
 	    question = Question.toVoter(voter, a, b);

@@ -29,7 +29,7 @@ public class StrategyHelperTests {
 	builder.putEdge(a3, a4);
 	builder.putEdge(a1, a4);
 	final ImmutableGraph<Alternative> graph = builder.build();
-	assertEquals(ImmutableSet.of(EndpointPair.unordered(a2, a3)), StrategyHelper.getIncomparablePairs(graph));
+	assertEquals(ImmutableSet.of(EndpointPair.unordered(a2, a3)), Helper.getIncomparablePairs(graph));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class StrategyHelperTests {
 	g2.putEdge(Alternative.withId(2), Alternative.withId(3));
 	g2.putEdge(Alternative.withId(3), Alternative.withId(4));
 
-	final StrategyHelper helper = StrategyHelper.newInstance();
+	final Helper helper = Helper.newInstance();
 	helper.setKnowledge(k);
 	assertEquals(ImmutableSet.of(), helper.getQuestionableVoters());
     }

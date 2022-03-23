@@ -23,7 +23,7 @@ import io.github.oliviercailloux.j_voting.VoterStrictPreference;
 import io.github.oliviercailloux.j_voting.preferences.classes.ImmutableLinearPreferenceImpl;
 import io.github.oliviercailloux.minimax.elicitation.QuestionVoter;
 import io.github.oliviercailloux.minimax.elicitation.VoterPreferenceInformation;
-import io.github.oliviercailloux.minimax.strategies.StrategyHelper;
+import io.github.oliviercailloux.minimax.strategies.Helper;
 
 public class CompletionXp {
     @SuppressWarnings("unused")
@@ -41,7 +41,7 @@ public class CompletionXp {
 	final VoterStrictPreference oracle = VoterStrictPreference.given(Voter.ZERO, shuffled);
 
 	final VoterPartialPreference knowledge = VoterPartialPreference.about(oracle.getVoter(), alternatives);
-	verify(StrategyHelper.isStrictlyIncreasing(alternatives, Comparator.naturalOrder()));
+	verify(Helper.isStrictlyIncreasing(alternatives, Comparator.naturalOrder()));
 	for (int i = 0; i <= 100; ++i) {
 	    final ImmutableGraph<Alternative> graph = knowledge.asTransitiveGraph();
 	    final int edgesKnown = graph.edges().size();

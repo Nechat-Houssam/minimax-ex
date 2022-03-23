@@ -44,9 +44,9 @@ import io.github.oliviercailloux.minimax.regret.PairwiseMaxRegret;
 import io.github.oliviercailloux.minimax.regret.RegretComputer;
 import io.github.oliviercailloux.minimax.regret.Regrets;
 
-public class StrategyHelper {
+public class Helper {
     @SuppressWarnings("unused")
-    private static final Logger LOGGER = LoggerFactory.getLogger(StrategyHelper.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Helper.class);
 
     public static ImmutableSet<EndpointPair<Alternative>> getIncomparablePairs(Graph<Alternative> graph) {
 	final Set<Alternative> alternatives = graph.nodes();
@@ -100,15 +100,15 @@ public class StrategyHelper {
 	return true;
     }
 
-    public static StrategyHelper newInstance() {
-	return new StrategyHelper();
+    public static Helper newInstance() {
+	return new Helper();
     }
 
     private UpdateablePreferenceKnowledge knowledge;
 
     private Random random;
 
-    private StrategyHelper() {
+    private Helper() {
 	knowledge = null;
 	random = null;
     }

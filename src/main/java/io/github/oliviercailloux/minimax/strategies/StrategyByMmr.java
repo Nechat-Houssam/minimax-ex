@@ -134,7 +134,7 @@ public class StrategyByMmr implements Strategy {
 	return limited(MmrLottery.MAX_COMPARATOR, constraints);
     }
 
-    private final StrategyHelper helper;
+    private final Helper helper;
 
     private boolean limited;
 
@@ -154,7 +154,7 @@ public class StrategyByMmr implements Strategy {
 	this.constraints = QuestioningConstraints.of(constraints);
 	this.penalty = penalty;
 
-	helper = StrategyHelper.newInstance();
+	helper = Helper.newInstance();
 	questions = null;
 	LOGGER.debug("Creating with constraints: {}.", constraints);
     }
@@ -239,7 +239,7 @@ public class StrategyByMmr implements Strategy {
 
 	final Comparator<Question> questionsComparator = Comparator.comparing(q -> adjustLottery(q, questions.get(q)),
 		lotteryComparator);
-	final ImmutableSet<Question> bestQuestions = StrategyHelper.getMinimalElements(questions.keySet(),
+	final ImmutableSet<Question> bestQuestions = Helper.getMinimalElements(questions.keySet(),
 		questionsComparator);
 	final ImmutableMap<Question, MmrLottery> sortedQuestions = questions.keySet().stream()
 		.sorted(questionsComparator).collect(ImmutableMap.toImmutableMap(q -> q, questions::get));
@@ -286,14 +286,14 @@ public class StrategyByMmr implements Strategy {
 	    question = getQuestionAboutIncomparableTo(voter, graph, tryFirst)
 		    .or(() -> getQuestionAboutIncomparableTo(voter, graph, trySecond))
 		    .orElseGet(() -> getQuestionAbout(voter,
-			    helper.sortAndDraw(StrategyHelper.getIncomparablePairs(graph).asList(), c2)));
+			    helper.sortAndDraw(Helper.getIncomparablePairs(graph).asList(), c2)));
 	}
 	return question;
     }
 
     private Optional<QuestionVoter> getQuestionAboutIncomparableTo(Voter voter, Graph<Alternative> graph,
 	    Alternative a) {
-	final ImmutableSet<Alternative> incomparables = StrategyHelper.getIncomparables(graph, a)
+	final ImmutableSet<Alternative> incomparables = Helper.getIncomparables(graph, a)
 		.collect(ImmutableSet.toImmutableSet());
 	return incomparables.isEmpty() ? Optional.empty()
 		: Optional.of(QuestionVoter.given(voter, a,

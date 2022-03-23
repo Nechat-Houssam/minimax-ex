@@ -39,7 +39,7 @@ import io.github.oliviercailloux.minimax.experiment.other_formats.ToCsv;
 import io.github.oliviercailloux.minimax.strategies.Strategy;
 import io.github.oliviercailloux.minimax.strategies.StrategyByMmr;
 import io.github.oliviercailloux.minimax.strategies.StrategyFactory;
-import io.github.oliviercailloux.minimax.strategies.StrategyHelper;
+import io.github.oliviercailloux.minimax.strategies.Helper;
 import io.github.oliviercailloux.minimax.utils.Generator;
 
 public class VariousXps {
@@ -254,7 +254,7 @@ public class VariousXps {
 	    knowledge.update(a);
 	    LOGGER.debug("Asked {}.", q);
 	    qBuilder.add(q);
-	    final int countTies = StrategyHelper
+	    final int countTies = Helper
 		    .getMinimalElements(strategy.getLastQuestions(), strategy.getLotteryComparator()).size();
 	    tiesBuilder.add(countTies);
 	}

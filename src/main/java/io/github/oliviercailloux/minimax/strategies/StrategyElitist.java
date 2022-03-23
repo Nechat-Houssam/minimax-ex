@@ -33,10 +33,10 @@ public class StrategyElitist implements Strategy {
 	return new StrategyElitist();
     }
 
-    private StrategyHelper helper;
+    private Helper helper;
 
     private StrategyElitist() {
-	helper = StrategyHelper.newInstance();
+	helper = Helper.newInstance();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class StrategyElitist implements Strategy {
 		    .max(Comparator.comparing(a -> graph.successors(a).size())).get();
 
 	    if (graph.successors(topAlternative).size() < m - 1) {
-		final Alternative incomparable = StrategyHelper.getIncomparables(graph, topAlternative)
+		final Alternative incomparable = Helper.getIncomparables(graph, topAlternative)
 			.sorted(Comparator.naturalOrder()).findFirst().get();
 		return Question.toVoter(QuestionVoter.given(pref.getVoter(), topAlternative, incomparable));
 	    }
@@ -71,7 +71,7 @@ public class StrategyElitist implements Strategy {
 		.collect(ImmutableMap.toImmutableMap(q -> q, this::toLottery));
 	final Comparator<Question> questionsComparator = Comparator.comparing(questions::get,
 		MmrLottery.MAX_COMPARATOR);
-	final ImmutableSet<Question> bestQuestions = StrategyHelper.getMinimalElements(questions.keySet(),
+	final ImmutableSet<Question> bestQuestions = Helper.getMinimalElements(questions.keySet(),
 		questionsComparator);
 	final ImmutableMap<Question, MmrLottery> sortedQuestions = questions.keySet().stream()
 		.sorted(questionsComparator).collect(ImmutableMap.toImmutableMap(q -> q, questions::get));
